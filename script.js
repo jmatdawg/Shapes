@@ -8,11 +8,23 @@ let squareInput = document.getElementById('squareInput');
 let rectangleButton = document.getElementById('rectangleButton');
 let rectangleInputl = document.getElementById('rectangleInputl');
 let rectangleInputw = document.getElementById('rectangleInputw');
+let width = document.getElementById('width');
+let height = document.getElementById('height');
+let radius = document.getElementById('radius');
+let area = document.getElementById('area');
+let perimeter = document.getElementById('perimeter');
+let shapeName = document.getElementById('shapeName');
+let targetShape;
+let targetWidth;
+let targetHeight;
+let targetRadius;
+let targetArea;
+let targetPerimeter;
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    let randomInRange = (min = 0, max = 600) =>{
+    let randomInRange = (min = 0, max = 500) =>{
     return(Math.floor((Math.random() * (max - min) + 1) + min))
 };
 {
@@ -20,7 +32,13 @@ class Shape{
     constructor(name){
          this.name = name;
      }
-    render() {
+    describe() {
+        shapeName.innerText = `Shape Name: ${targetShape}`;
+        width.innerText = `Width: ${targetWidth}`;
+        height.innerText = `Height: ${targetHeight}`;
+        radius.innerText = `Radius: ${targetRadius}`;
+        area.innerText = `Area: ${targetArea}`;
+        perimeter.innerText = `Perimeter: ${targetPerimeter}`;
     }
  }
 
@@ -34,9 +52,24 @@ class Shape{
         circleDiv.className = "circle";
         circleDiv.style.height = `${this.radius * 2}px`
         circleDiv.style.width  = `${this.radius * 2}px`
-        cirlceDiv.style.left = `${randomInRange}px`;
-        circleDiv.style.top = `${randomInRange}px`;
+        circleDiv.style.left = `${randomInRange()}px`;
+        circleDiv.style.top = `${randomInRange()}px`;
         container.appendChild(circleDiv);
+        circleDiv.addEventListener('click', () => {
+            this.getCircleStats();
+            this.describe();
+        }) 
+        circleDiv.addEventListener('dblclick', () => {
+            circleDiv.remove();
+            })
+    }
+     getCircleStats() {
+        targetShape = this.name;
+        targetWidth = this.radius * 2;
+        targetHeight = this.radius * 2;
+        targetRadius = this.radius;
+        targetArea = Math.PI * this.radius**2;
+        targetPerimeter = 2 * Math.PI * this.radius;
     }
  }
 circleButton.addEventListener('click', function() {
@@ -54,12 +87,27 @@ circleButton.addEventListener('click', function() {
         triangleDiv.className = "triangle";
         triangleDiv.style.borderBottom = `${this.height}px solid transparent`;
         triangleDiv.style.borderRight = `${this.height}px solid yellow`;
-        cirlceDiv.style.left = `${randomInRange}px`;
-        circleDiv.style.top = `${randomInRange}px`;
-        container.appendChild(triangleDiv);  
+        triangleDiv.style.left = `${randomInRange()}px`;
+        triangleDiv.style.top = `${randomInRange()}px`;
+        container.appendChild(triangleDiv);
+        triangleDiv.addEventListener('click', () => {
+            this.getTriangleStats();
+            this.describe();
+        }) 
+        triangleDiv.addEventListener('dblclick', () => {
+            triangleDiv.remove();
+            })
+    }
+     getTriangleStats() {
+        targetShape = this.name;
+        targetWidth = this.height;
+        targetHeight = this.height;
+        targetRadius = 0.5 * (2-Math.sqrt(2)) * this.height;
+        targetArea = 0.5 * this.height * this.height;
+        targetPerimeter = 2 * this.height * Math.sqrt(2 * this.height * this.height);
     }
  }
- triangleButton.addEventListener('click', function() {
+ triangleButton.addEventListener('click', () => {
     let newTriangle = new triangleShape(triangleInput.value);
     newTriangle.createTriangle();
  })
@@ -74,9 +122,24 @@ circleButton.addEventListener('click', function() {
         squareDiv.className = "square";
         squareDiv.style.height = `${this.sideLength}px`
         squareDiv.style.width  = `${this.sideLength}px`
-        cirlceDiv.style.left = `${randomInRange}px`;
-        circleDiv.style.top = `${randomInRange}px`;
-        container.appendChild(squareDiv);  
+        squareDiv.style.left = `${randomInRange()}px`;
+        squareDiv.style.top = `${randomInRange()}px`;
+        container.appendChild(squareDiv);
+        squareDiv.addEventListener('click', () => {
+            this.getSquareStats();
+            this.describe();
+        }) 
+        squareDiv.addEventListener('dblclick', () => {
+            squareDiv.remove();
+            })
+    }
+    getSquareStats() {
+        targetShape = this.name;
+        targetWidth = this.sideLength;
+        targetHeight = this.sideLength;
+        targetRadius = 0.5 * this.sideLength;
+        targetArea = this.sideLength**(2);
+        targetPerimeter = 4 * this.sideLength;
     }
  }
  squareButton.addEventListener('click', function() {
@@ -94,15 +157,30 @@ class rectangleShape extends Shape {
         rectangleDiv.className = "rectangle";
         rectangleDiv.style.height = `${this.length}px`;
         rectangleDiv.style.width  = `${this.width}px`;
-        cirlceDiv.style.left = `${randomInRange}px`;
-        circleDiv.style.top = `${randomInRange}px`;
+        rectangleDiv.style.left = `${randomInRange()}px`;
+        rectangleDiv.style.top = `${randomInRange()}px`;
         container.appendChild(rectangleDiv);
+        rectangleDiv.addEventListener('click', () => {
+            this.getRectangleStats();
+            this.describe();
+        }) 
+        rectangleDiv.addEventListener('dblclick', () => {
+            rectangleDiv.remove();
+            })
+    }
+    getRectangleStats() {
+        targetShape = this.name;
+        targetWidth = this.width;
+        targetHeight = this.length;
+        targetRadius = Math.sqrt((this.width * this.width) + (this.length * this.length)) / 2;
+        targetArea = this.width * this.length;
+        targetPerimeter = (2 * this.length) + (2 * this.width);
     }
  }
 rectangleButton.addEventListener('click', function() {
     let newRectangle = new rectangleShape(rectangleInputl.value, rectangleInputw.value);
     newRectangle.createRectangle();
 })
-});
+}});
 
 
