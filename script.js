@@ -21,12 +21,11 @@ let targetRadius;
 let targetArea;
 let targetPerimeter;
 
-
 document.addEventListener("DOMContentLoaded", function(event) {
-
     let randomInRange = (min = 0, max = 500) =>{
     return(Math.floor((Math.random() * (max - min) + 1) + min))
 };
+
 {
 class Shape{
     constructor(name){
@@ -72,7 +71,7 @@ class Shape{
         targetPerimeter = 2 * Math.PI * this.radius;
     }
  }
-circleButton.addEventListener('click', function() {
+    circleButton.addEventListener('click', function() {
     let newCircle = new circleShape(circleInput.value);
     newCircle.createCircle();
 })
@@ -107,7 +106,7 @@ circleButton.addEventListener('click', function() {
         targetPerimeter = 2 * this.height * Math.sqrt(2 * this.height * this.height);
     }
  }
- triangleButton.addEventListener('click', () => {
+    triangleButton.addEventListener('click', () => {
     let newTriangle = new triangleShape(triangleInput.value);
     newTriangle.createTriangle();
  })
@@ -142,10 +141,11 @@ circleButton.addEventListener('click', function() {
         targetPerimeter = 4 * this.sideLength;
     }
  }
- squareButton.addEventListener('click', function() {
+    squareButton.addEventListener('click', function() {
     let newSquare = new squareShape(squareInput.value);
     newSquare.createSquare();
  }) 
+ 
 class rectangleShape extends Shape {
     constructor(length, width){
         super('rectangle');
