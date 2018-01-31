@@ -1,0 +1,39 @@
+#container{
+    height: 600px;
+    width: 600px;
+    margin-left: 200px;
+    background-color: pink;
+    position: relative;
+}
+
+.sidepanel {
+    width: 160px;
+    position: fixed; 
+    height: 100%;
+}
+
+input{
+    margin: .5em;
+}
+
+.circle{
+    border-radius: 50%;
+    position: absolute;
+    background-color: purple;
+}
+
+.triangle{
+    width: 0; 
+    height: 0; 
+    position: absolute;
+}
+
+.square{
+    position: absolute;
+    background-color: red;
+}
+
+.rectangle{
+    position: absolute;
+    background-color: green;
+}
