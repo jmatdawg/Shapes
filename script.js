@@ -14,6 +14,8 @@ let radius = document.getElementById('radius');
 let area = document.getElementById('area');
 let perimeter = document.getElementById('perimeter');
 let shapeName = document.getElementById('shapeName');
+
+// put these above in dom content loaded,  because the DOM doesn't always load fast enough. Still "let =container" to access those variables outside the DOM, but grab it by id in the DOM without let.
 let targetShape;
 let targetWidth;
 let targetHeight;
@@ -39,7 +41,26 @@ class Shape{
         area.innerText = `Area: ${targetArea}`;
         perimeter.innerText = `Perimeter: ${targetPerimeter}`;
     }
- }
+}
+//  } needs a render function and the last line is appendChild. createElement, className= what we passed in constructor so this.name, this.shape=createElement, etc
+// create onclick in html and create the function in js
+//cal; this.render to call function in big shape once all. 
+//create a random method for pos and add that to render
+//call render in each child class
+//when each child class function is called, thats when you do the input
+//create get area function in parent class
+    // get area() {
+    //     swith (this.type) {
+    //         case: 'triangle' :
+                    // return this.height**2 /2
+    //         case: 'rectangle' :
+                    //return this.height * this.width etc
+            // default:
+            //        return     
+    //     }
+    // } do one for perimeter, radius, etc.
+
+    inside describe: set .innerText to this.
 
  class circleShape extends Shape {
     constructor(radius){
